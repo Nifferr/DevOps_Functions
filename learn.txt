@@ -1,0 +1,6 @@
+rodar o container dockersamples/static-site
+mapear a porta usando o parâmetro -P ou -p
+definir um nome para o container com o parâmetro --name
+rodar o container no modo detached com o parâmetro -d
+listar, parar e remover containers
+

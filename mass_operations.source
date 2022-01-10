@@ -1,0 +1,19 @@
+#! /bin/bash
+# Script to access useful commands
+# v20220104
+# Updated January 2022
+# GPL 3.0
+
+#master rename files
+mrnf() {
+find $1 -type f -name "$2*" -print0 |
+    while IFS= read -d '' file_name; do
+        echo "$file_name" "${file_name/"$2"/"$3"}"
+        # mv "$file_name" "${file_name/"$2"/"$3"}"
+    done
+}
+
+#master rename contents
+mrnc() {
+find ./ -name "*$1*" | xargs sed -i '' 's/host: teste/host: teste1/g'
+}
