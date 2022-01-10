@@ -1,19 +1,31 @@
 #! /bin/bash
 # Script to access useful commands
-# v20220104
+# v20220110
 # Updated January 2022
 # GPL 3.0
 
 #master rename files
-mrnf() {
-find $1 -type f -name "$2*" -print0 |
+# $1      set old file name
+# $2      set new file name
+local_mrnf() {
+find ./ -type f -name "$1*" -print0 |
     while IFS= read -d '' file_name; do
-        echo "$file_name" "${file_name/"$2"/"$3"}"
-        # mv "$file_name" "${file_name/"$2"/"$3"}"
+      mv "$file_name" "${file_name/"$1"/"$2"}"
     done
 }
 
-#master rename contents
-mrnc() {
-find ./ -name "*$1*" | xargs sed -i '' 's/host: teste/host: teste1/g'
+#global_sf
+
+
+#master rename contents locally
+# $1    filename criteria
+# $2    old string
+# $3    new string
+local_mrnc() {
+find ./ -name "*$1*" | xargs sed -i '' 's/$2/$3/g'
+}
+
+#master rename contents globally
+global_mrnc() {
+find . -name "*$1*" | xargs sed -i '' 's/$2/$3/g'
 }
